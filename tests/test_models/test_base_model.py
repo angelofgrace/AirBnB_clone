@@ -25,9 +25,8 @@ class Test_base_model(unittest.TestCase):
 
     def test_to_dict(self):
         model3 = BaseModel()
-        tester3 = model3.to_dict()
-        self.assertIsInstance(tester3, dict)
-
+        self.assertIsInstance(model3.to_dict(), dict)
+        
     def test_save(self):
         model4 = BaseModel()
         self.assertNotEqual(model4, model4.save())
