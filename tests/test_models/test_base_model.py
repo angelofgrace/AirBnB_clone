@@ -25,9 +25,12 @@ class Test_base_model(unittest.TestCase):
 
     def test_to_dict(self):
         model3 = BaseModel()
-        self.assertIsInstance(model3.to_dict(), dict)
+        self.assertIn("__class__", model3.to_dict())
         
     def test_save(self):
         model4 = BaseModel()
-        self.assertNotEqual(model4, model4.save())
+        time1 = model4.updated_at
+        model4.save()
+        time2 = model4.updated_at
+        self.assertNotEqual(time1, time2)
        
