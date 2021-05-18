@@ -11,7 +11,7 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         if not kwargs:
-            self.id = uuid4()
+            self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
         else:
