@@ -1,4 +1,4 @@
-!/usr/bin/python3
+#!/usr/bin/python3
 """Storage componenet for consone"""
 
 
@@ -17,30 +17,31 @@ class FileStorage:
 
         # new dictionary entry, passed object as parameter
     def new(self, obj):
+        """new() formats and passes objects to an appendable dict """
         # making a key, and the key is a string
         print(obj)
-        print("obj passed to new() function")
+        print("^^^ the obj passed to new() function ^^^")
+        # why must type(obj).__name but can obj.id???
         new_key = type(obj).__name__ + "." + obj.id
         print(new_key)
-        print("checking format of created object")
+        print("checking formatting for new object")
         FileStorage.__objects[new_key] = obj
 
     def save(self):
-        #  the obj is a dictionary
-        # make a new empty dict
+        # the obj is a dictionary
         to_be_json = {}
-        # open file
         # loop through key/value in filestorage.__objects
         for k, v in FileStorage.__objects.items():
             to_be_json[k] = v.to_dict() 
             print("k: {} and v: {}".format(k, v))
+            print("^^^ printing list of objects in __objects^^^")
         with open(FileStorage.__file_path, 'w') as FS:
             json.dump(to_be_json, FS)
            
         #  use to_dic to update new dict info from filestorage.__objects
         #  json dump dict to file
 
-'''   def reload(self):
+    '''def reload(self):
           """read json file, create python objects"""
           if file does not exist
               raise Exception
