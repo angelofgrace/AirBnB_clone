@@ -25,7 +25,7 @@ class BaseModel:
                         '%Y-%m-%dT%H:%M:%S.%f')
                     setattr(self, k, kwargs[k])
                 # everything except for class attr are set
-                elif k is not '__class__':
+                elif k != '__class__':
                     setattr(self, k, kwargs[k])
 
     def __str__(self):
