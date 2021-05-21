@@ -10,12 +10,11 @@ from datetime import datetime
 
 class FileStorage:
 
-    __file_path = "CVanndys_excellent_OOP.json"
+    __file_path = "file.json"
     __objects = {}
     class_inits = {'BaseModel': BaseModel}
 
     def all(self):
-
         return FileStorage.__objects
 
         # new dictionary entry, passed object as parameter
@@ -47,5 +46,4 @@ class FileStorage:
             for cls_name in FileStorage.class_inits.keys():
                 if cls_name in key:
                     # if match, call instantiation with TDD value as parameter
-                    FileStorage.__objects[key] = FileStorage.class_inits[
-                        cls_name](tempDictofDicts[key])
+                    FileStorage.__objects[key] = FileStorage.class_inits[cls_name](**(tempDictofDicts[key]))
