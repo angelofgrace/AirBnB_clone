@@ -43,15 +43,8 @@ class FileStorage:
         with open(FileStorage.__file_path, "r") as FS:
             tempDictofDicts = json.loads(FS.read())
         for key in tempDictofDicts.keys():
-            print(tempDictofDicts[key])
-            print(type(tempDictofDicts[key]))
         # loop through dictionary of classes/class instantiating methods
             for cls_name in FileStorage.class_inits.keys():
-                print(cls_name)
                 if cls_name in key:
                     # if match, call instantiation with TDD value as parameter
                     FileStorage.class_inits[cls_name](tempDictofDicts[key])
-        
-    # in a temporary dict of dicts, iterate through all values (attr dicts)
-    # assign them to an object based on key (<class>.id)
-    # in __objects, key remains <class>.id, value becomes new instance object
