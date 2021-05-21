@@ -15,7 +15,7 @@ class FileStorage:
     class_inits = {'BaseModel': BaseModel}
 
     def all(self):
-         
+
         return FileStorage.__objects
 
         # new dictionary entry, passed object as parameter
@@ -33,7 +33,7 @@ class FileStorage:
             """ store a copy of each instance, v """
             to_be_json[k] = v.to_dict()
         with open(FileStorage.__file_path, 'w') as FS:
-            """ Dump list of dictionaries (to_be_json) to file as JSON string """
+            """ Dump list of dicts (to_be_json) to file as JSON string """
             json.dump(to_be_json, FS)
 
     def reload(self):
@@ -43,8 +43,9 @@ class FileStorage:
         with open(FileStorage.__file_path, "r") as FS:
             tempDictofDicts = json.loads(FS.read())
         for key in tempDictofDicts.keys():
-        # loop through dictionary of classes/class instantiating methods
+            # loop through dictionary of classes/class instantiating methods
             for cls_name in FileStorage.class_inits.keys():
                 if cls_name in key:
                     # if match, call instantiation with TDD value as parameter
-                    FileStorage.class_inits[cls_name](tempDictofDicts[key])
+                    FileStorage.__objects[key] = FileStorage.class_inits[
+                        cls_name](tempDictofDicts[key])
