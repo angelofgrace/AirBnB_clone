@@ -12,6 +12,7 @@ class FileStorage:
 
     __file_path = "CVanndys_excellent_OOP.json"
     __objects = {}
+    class_inits = {'BaseModel': BaseModel}
 
     def all(self):
          
@@ -40,4 +41,10 @@ class FileStorage:
         if not path.exists(FileStorage.__file_path):
             return None
         with open(FileStorage.__file_path, "r") as FS:
-            FileStorage.__objects = json.loads(FS.read())
+            tempDictofDicts = json.loads(FS.read())
+        for key in tempDictofDicts.keys():
+        # loop through dictionary of classes/class instantiating methods
+            for cls_name in FileStorage.class_inits.keys():
+                if cls_name in key:
+                    # if match, call instantiation with TDD value as parameter
+                    FileStorage.class_inits[cls_name](tempDictofDicts[key])
