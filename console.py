@@ -38,7 +38,7 @@ class HBNBCommand(cmd.Cmd):
     def do_show(self, args):
         """ Prints the string rep of an instance based on the class name """
         cmds = args.split()
-        if not cmds[0]:
+        if len(cmds) == 0:
             print("** class name missing **")
             return
         if len(cmds) == 1:
@@ -55,7 +55,7 @@ class HBNBCommand(cmd.Cmd):
     def do_destroy(self, args):
         """ Delete an instance based on class name and id """
         cmds = args.split()
-        if not cmds[0]:
+        if len(cmds) == 0:
             print("** class name missing **")
             return
         if len(cmds) == 1:
@@ -80,6 +80,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             if arg not in FileStorage.class_inits.keys():
                 print("** class doesn't exist **")
+                return
             for cls_name in models.storage.all().keys():
                 if arg in cls_name:
                     listOfInstances.append(str(models.storage.all()[cls_name]))
