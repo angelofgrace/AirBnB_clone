@@ -6,13 +6,13 @@ from models.base_model import BaseModel
 import json
 from os import path
 from datetime import datetime
-
+from models.user import User
 
 class FileStorage:
 
     __file_path = "file.json"
     __objects = {}
-    class_inits = {'BaseModel': BaseModel}
+    class_inits = {'BaseModel': BaseModel, 'User': User}
 
     def all(self):
         return FileStorage.__objects
