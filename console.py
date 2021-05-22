@@ -41,7 +41,7 @@ class HBNBCommand(cmd.Cmd):
         if not cmds[0]:
             print("** class name missing **")
             return
-        if not cmds[1]:
+        if len(cmds) == 1:
             print("** instance id missing **")
             return
         if cmds[0] not in FileStorage.class_inits.keys():
@@ -58,7 +58,7 @@ class HBNBCommand(cmd.Cmd):
         if not cmds[0]:
             print("** class name missing **")
             return
-        if not cmds[1]:
+        if len(cmds) == 1:
             print("** instance id missing **")
             return
         if cmds[0] not in FileStorage.class_inits.keys():
