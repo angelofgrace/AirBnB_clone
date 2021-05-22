@@ -5,8 +5,7 @@ import cmd, sys
 
 class HBNBCommand(cmd.Cmd):
     """MyPrompt is a cmd class meant to get command line up and running"""
-    intro = 'You are inside a shell you created\n'
-    prompt = 'And_I_OOP$ '
+    prompt = '(hbnb) '
     file = None
 
     def emptyline(self):
