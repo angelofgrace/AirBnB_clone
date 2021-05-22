@@ -15,12 +15,10 @@ class HBNBCommand(cmd.Cmd):
 
     def do_quit(self, arg):
         """quit command to exit the program"""
-        print('Thank you for using bloop')
         return True
 
     def do_EOF(self, arg):
         """EOF signal to exit the program"""
-        print("EOF triggered, bloop was exited")
         return True
 
 if __name__ == '__main__':
