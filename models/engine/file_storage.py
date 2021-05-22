@@ -8,6 +8,7 @@ from os import path
 from datetime import datetime
 from models.user import User
 
+
 class FileStorage:
 
     __file_path = "file.json"
@@ -46,4 +47,5 @@ class FileStorage:
             for cls_name in FileStorage.class_inits.keys():
                 if cls_name in key:
                     # if match, call instantiation with TDD value as parameter
-                    FileStorage.__objects[key] = FileStorage.class_inits[cls_name](**(tempDictofDicts[key]))
+                    FileStorage.__objects[key] = FileStorage.class_inits[
+                        cls_name](**(tempDictofDicts[key]))
