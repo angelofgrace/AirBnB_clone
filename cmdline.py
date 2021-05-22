@@ -3,10 +3,9 @@
 
 import cmd, sys
 
-class MyPrompt(cmd.Cmd):
+class HBNBCommand(cmd.Cmd):
     """MyPrompt is a cmd class meant to get command line up and running"""
-    intro = 'You are inside a shell you created\n'
-    prompt = 'bloop$ '
+    prompt = '(hbnb)'
     file = None
 
     def emptyline(self):
@@ -15,13 +14,11 @@ class MyPrompt(cmd.Cmd):
 
     def do_quit(self, arg):
         """quit command to exit the program"""
-        print('Thank you for using bloop')
         return True
 
     def do_EOF(self, arg):
         """EOF signal to exit the program"""
-        print("EOF triggered, bloop was exited")
         return True
 
 if __name__ == '__main__':
-    MyPrompt().cmdloop()
+    HBNBCommand().cmdloop()
