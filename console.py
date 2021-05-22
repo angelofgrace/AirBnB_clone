@@ -1,12 +1,15 @@
 #!/usr/bin/python3
 """cmdline trying to get a command line prompt up and running"""
 
-import cmd, sys
+import cmd
+import sys
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 import models
 
+
 class HBNBCommand(cmd.Cmd):
+
     """MyPrompt is a cmd class meant to get command line up and running"""
     prompt = '(hbnb) '
     file = None
@@ -89,7 +92,6 @@ class HBNBCommand(cmd.Cmd):
     def do_update(self, args):
         """updates an instance based on the class name and id"""
         cmds = args.split()
-        print(cmds)
         if len(cmds) == 0:
             print("** class name missing **")
             return
@@ -109,15 +111,14 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
             return
         for inst_name in models.storage.all().keys():
-	    instance = models.storage.all()[inst_name]
+            instance = models.storage.all()[inst_name]
             if cmds[1] in inst_name:
                 if cmds[2] in str(instance):
                     val = type(instance.__dict__[cmds[2]])(cmds[3])
                     setattr(instance, cmds[2], val)
                 else:
                     instance.__dict__[cmds[2]] = cmds[3]
-             
-        
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
