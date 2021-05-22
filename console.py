@@ -21,7 +21,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, arg):
         """EOF signal to exit the program"""
-        return True
+        return Trues
 
     def do_create(self, arg):
         """ Create a new instance of BaseModel, saved to JSON, print id """
@@ -85,6 +85,39 @@ class HBNBCommand(cmd.Cmd):
                 if arg in cls_name:
                     listOfInstances.append(str(models.storage.all()[cls_name]))
             print(listOfInstances)
+
+    def do_update(self, args):
+        """updates an instance based on the class name and id"""
+        cmds = args.split()
+        print(cmds)
+        if len(cmds) == 0:
+            print("** class name missing **")
+            return
+        if len(cmds) == 1:
+            print("** instance id missing **")
+            return
+        if cmds[0] not in FileStorage.class_inits.keys():
+            print("** class doesn't exist **")
+            return
+        if "{}.{}".format(cmds[0], cmds[1]) not in models.storage.all().keys():
+            print("** no instance found **")
+            return
+        if len(cmds) == 2:
+            print("** attribute name missing **")
+            return
+        if len(cmds) == 3:
+            print("** value missing **")
+            return
+        for inst_name in models.storage.all().keys():
+	    instance = models.storage.all()[inst_name]
+            if cmds[1] in inst_name:
+                if cmds[2] in str(instance):
+                    val = type(instance.__dict__[cmds[2]])(cmds[3])
+                    setattr(instance, cmds[2], val)
+                else:
+                    instance.__dict__[cmds[2]] = cmds[3]
+             
+        
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
