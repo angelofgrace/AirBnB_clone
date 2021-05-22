@@ -13,7 +13,7 @@ class FileStorage:
 
     __file_path = "file.json"
     __objects = {}
-    class_inits = {'BaseModel': BaseModel, 'User': User}
+    class_inits = {'BaseModel': BaseModel, 'User': User, 'State': State, 'City': City, 'Amenity': Amenity, 'Place': Place, 'Review': Review}
 
     def all(self):
         return FileStorage.__objects
