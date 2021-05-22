@@ -38,40 +38,36 @@ class HBNBCommand(cmd.Cmd):
     def do_show(self, args):
         """ Prints the string rep of an instance based on the class name """
         cmds = args.split()
-        cls_name = cmds[0]
-        cls_id = cmds[1]
-        if not cls_name:
+        if not cmds[0]:
             print("** class name missing **")
             return
-        if not cls_id:
+        if not cmds[1]:
             print("** instance id missing **")
             return
-        if cls_name not in FileStorage.class_inits.keys():
+        if cmds[0] not in FileStorage.class_inits.keys():
             print("** class doesn't exist **")
             return
-        if "{}.{}".format(cls_name, cls_id) not in models.storage.all().keys():
+        if "{}.{}".format(cmds[0], cmds[1]) not in models.storage.all().keys():
             print("** no instance found **")
             return
-        print(str(models.storage.all()["{}.{}".format(cls_name, cls_id)]))
+        print(str(models.storage.all()["{}.{}".format(cmds[0], cmds[1])]))
 
     def do_destroy(self, args):
         """ Delete an instance based on class name and id """
         cmds = args.split()
-        cls_name = cmds[0]
-        cls_id = cmds[1]
-        if not cls_name:
+        if not cmds[0]:
             print("** class name missing **")
             return
-        if not cls_id:
+        if not cmds[1]:
             print("** instance id missing **")
             return
-        if cls_name not in FileStorage.class_inits.keys():
+        if cmds[0] not in FileStorage.class_inits.keys():
             print("** class doesn't exist **")
             return
-        if "{}.{}".format(cls_name, cls_id) not in models.storage.all().keys():
+        if "{}.{}".format(cmds[0], cmds[1]) not in models.storage.all().keys():
             print("** no instance found **")
             return
-        del models.storage.all()["{}.{}".format(cls_name, cls_id)]
+        del models.storage.all()["{}.{}".format(cmds[0], cmds[1])]
         models.storage.save()
 
     def do_all(self, arg):
