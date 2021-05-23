@@ -14,4 +14,4 @@ class Test_place(unittest.TestCase):
 
     def test_place(self):
         place1 = Place()
-        self.assertIsInstance(place1, Place)
+        self.assertIsNotNone(place1.name)

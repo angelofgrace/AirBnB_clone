@@ -14,4 +14,4 @@ class Test_review(unittest.TestCase):
 
     def test_review(self):
         review1 = Review()
-        self.assertIsInstance(review1, Review)
+        self.assertIsNotNone(review1.text)

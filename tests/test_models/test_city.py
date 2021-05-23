@@ -14,4 +14,4 @@ class Test_city(unittest.TestCase):
 
     def test_city(self):
         city1 = City()
-        self.assertIsInstance(city1, City)
+        self.assertIsNotNone(city1.name)
