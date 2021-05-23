@@ -14,4 +14,4 @@ class Test_state(unittest.TestCase):
 
     def test_state(self):
         state1 = State()
-        self.assertIsInstance(state1, State)
+        self.assertIsNotNone(state1.name)

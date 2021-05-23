@@ -14,4 +14,4 @@ class Test_amenity(unittest.TestCase):
 
     def test_amenity(self):
         amenity1 = Amenity()
-        self.assertIsInstance(amenity1, Amenity)
+        self.assertIsNotNone(amenity1.name)
