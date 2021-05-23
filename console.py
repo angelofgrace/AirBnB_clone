@@ -24,7 +24,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, arg):
         """EOF signal to exit the program"""
-        return Trues
+        return True
 
     def do_create(self, arg):
         """ Create a new instance of BaseModel, saved to JSON, print id """
