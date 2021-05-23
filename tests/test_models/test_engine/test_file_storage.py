@@ -27,5 +27,6 @@ class Test_file_storage(unittest.TestCase):
         model6 = BaseModel()
         storage3 = FileStorage()
         FileStorage.save(model6)
+        storage3.all().clear()
         storage3.reload()
         self.assertIn("{}.{}".format(model6.__class__.__name__, model6.id), storage3.all().keys())
