@@ -8,7 +8,9 @@ import unittest
 import datetime
 import os
 
+
 class Test_file_storage(unittest.TestCase):
+
     """ Test FileStorage class with unit tests """
 
     def test__file_path(self):
@@ -35,8 +37,11 @@ class Test_file_storage(unittest.TestCase):
     def test_all_new(self):
         model5 = BaseModel()
         storage2 = FileStorage()
-        self.assertIn("{}.{}".format(model5.__class__.__name__, model5.id), storage2.all().keys())
-        self.assertIn(model5, storage2.all().values()) 
+        self.assertIn(
+            "{}.{}".format(model5.__class__.__name__,
+                           model5.id),
+            storage2.all().keys())
+        self.assertIn(model5, storage2.all().values())
 
     def test_save(self):
         model6 = BaseModel()
@@ -44,4 +49,7 @@ class Test_file_storage(unittest.TestCase):
         storage3.save()
         os.remove(storage3.all())
         storage3.reload()
-        self.assertIn("{}.{}".format(model6.__class__.__name__, model6.id), storage3.all().keys()) 
+        self.assertIn(
+            "{}.{}".format(model6.__class__.__name__,
+                           model6.id),
+            storage3.all().keys())
