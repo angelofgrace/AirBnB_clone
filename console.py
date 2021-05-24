@@ -131,6 +131,35 @@ class HBNBCommand(cmd.Cmd):
                     setattr(instance, cmds[2], val)
                 else:
                     instance.__dict__[cmds[2]] = cmds[3]
+            instance.save()
+
+    def default(self, line):
+        """ Parse line based on syntax instructions, pass to other func """
+        if "." in line and line.split(".")[0] \
+                in FileStorage.class_inits.keys():
+            cls = line.split(".")[0]
+            method = line[len(cls) + 1:]
+            action = method.split("(")[0]
+            params = method[method.find("(") + 1:method.find(")")]
+            if action == "all":
+                self.do_all(cls)
+            elif action == "show":
+                self.do_show(cls + " " + params[1:-1])
+            elif action == "destroy":
+                self.do_destroy(cls + " " + params[1:-1])
+            elif action == "update":
+                info = params.split(", ")
+                p_id = info[0][1:-1]
+                p_attr = info[1][1:-1]
+                p_val = info[2][1:-1] if p[2][0] == "\"" else p[2]
+                self.do_update(cls + " " + p_id + " " + p_attr + " " + p_val)
+            elif action == "count":
+                print(len(list(filter(
+                 lambda key: key.split(".")[0] == cls, models.storage.all()))))
+            else:
+                super().default()
+        else:
+            super().default()
 
 
 if __name__ == '__main__':
