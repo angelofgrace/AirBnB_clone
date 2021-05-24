@@ -6,6 +6,7 @@ from datetime import datetime
 
 
 class State(BaseModel):
+
     """State is a child class of BaseModel with relevante class attributes"""
 
     name = ""

@@ -7,7 +7,7 @@ from datetime import datetime
 
 class Place(BaseModel):
 
-    """State is a child class of BaseModel with relevante class attributes"""
+    """Place s a child class of BaseModel with its own class attributes"""
 
     city_id = ""  # will be City.id
     user_id = ""  # will be User.id
