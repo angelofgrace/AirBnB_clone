@@ -53,6 +53,7 @@ class HBNBCommand(cmd.Cmd):
         if "{}.{}".format(cmds[0], cmds[1]) not in models.storage.all().keys():
             print("** no instance found **")
             return
+        # if <class> (id) found in storage print string rep of instance
         print(str(models.storage.all()["{}.{}".format(cmds[0], cmds[1])]))
 
     def do_destroy(self, args):
@@ -64,26 +65,33 @@ class HBNBCommand(cmd.Cmd):
         if len(cmds) == 1:
             print("** instance id missing **")
             return
+        # check to make sure <class> exists
         if cmds[0] not in FileStorage.class_inits.keys():
             print("** class doesn't exist **")
             return
+        # confirm <class> <id> are in storage
         if "{}.{}".format(cmds[0], cmds[1]) not in models.storage.all().keys():
             print("** no instance found **")
             return
+        # if <class> exists and <class> <id> pair exist - delete it
         del models.storage.all()["{}.{}".format(cmds[0], cmds[1])]
         models.storage.save()
 
     def do_all(self, arg):
         """ Print all string reps of all instances based on class input """
+        # create empty list to return
         listOfInstances = []
         if not arg:
+            # if <class> not specified print all keys appended to new list
             for key in models.storage.all().keys():
                 listOfInstances.append(str(models.storage.all()[key]))
             print(listOfInstances)
         else:
+            # if arg is specified, confirm it exists
             if arg not in FileStorage.class_inits.keys():
                 print("** class doesn't exist **")
                 return
+            # if <class> name is confirmed, print all instances of that class
             for cls_name in models.storage.all().keys():
                 if arg in cls_name:
                     listOfInstances.append(str(models.storage.all()[cls_name]))
@@ -110,10 +118,15 @@ class HBNBCommand(cmd.Cmd):
         if len(cmds) == 3:
             print("** value missing **")
             return
+        # for instance key name in "view object" of storage
         for inst_name in models.storage.all().keys():
+            # store instance as [inst_name] in variable <instance>
             instance = models.storage.all()[inst_name]
+            # confirm cmd[1]//<id> is in list of key names in "view object"
             if cmds[1] in inst_name:
+                # if cmd[2]<class attr> is in str repr of instance
                 if cmds[2] in str(instance):
+                    # ******CHRIS NEEDS TO LEARN ABOUT THIS BLOCK OF CODE***
                     val = type(instance.__dict__[cmds[2]])(cmds[3])
                     setattr(instance, cmds[2], val)
                 else:

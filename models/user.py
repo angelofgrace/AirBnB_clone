@@ -6,8 +6,7 @@ from models.base_model import BaseModel
 
 
 class User(BaseModel):
-
-    """User is child class of BaseModel with additional class attributes"""
+    """User is a child class of BaseModel with specified class attributes"""
 
     email = ""
     password = ""

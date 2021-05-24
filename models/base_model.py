@@ -30,6 +30,7 @@ class BaseModel:
 
     def __str__(self):
         """__str__ method represents the class BaseModel"""
+        # '[<Class>] (<id>) {instance attributes}'
         string = "[{}] ({}) {}".format(
             self.__class__.__name__,
             self.id,
@@ -37,12 +38,13 @@ class BaseModel:
         return string
 
     def save(self):
-        """ updates the public instance attribute updated_at"""
+        """save() updates the intances datetime attribute"""
+        """save() stores updated instaces in storage"""
         self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
-        """  return a dictionary conatining all keys/value """
+        """to_dict creates a dictionary with formated keys value pairs"""
         self.__dict__['__class__'] = self.__class__.__name__
         attr_dict = self.__dict__.copy()
         attr_dict["created_at"] = attr_dict["created_at"].isoformat()
