@@ -36,7 +36,7 @@ class FileStorage:
     def new(self, obj):
         """ new() formats and passes objects to an appendable dict """
         """ new_key is set as a string in format ' <class>.id' """
-        new_key = type(obj).__name__ + "." + obj.id
+        new_key = obj.__class__.__name__ + "." + obj.id
         FileStorage.__objects[new_key] = obj
 
     # are we able to replace any of this code with "storage"??
