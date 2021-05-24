@@ -135,11 +135,16 @@ class HBNBCommand(cmd.Cmd):
 
     def default(self, line):
         """ Parse line based on syntax instructions, pass to other func """
+        # separate input by "." delim, match 0th str with Class dict
         if "." in line and line.split(".")[0] \
                 in FileStorage.class_inits.keys():
+            # 0th portion is class name
             cls = line.split(".")[0]
+            # method is everything after class name
             method = line[len(cls) + 1:]
+            # action is the console method to call
             action = method.split("(")[0]
+            # paramters, if they exist, all follow action
             params = method[method.find("(") + 1:method.find(")")]
             if action == "all":
                 self.do_all(cls)
@@ -151,9 +156,12 @@ class HBNBCommand(cmd.Cmd):
                 info = params.split(", ")
                 p_id = info[0][1:-1]
                 p_attr = info[1][1:-1]
-                p_val = info[2][1:-1] if p[2][0] == "\"" else p[2]
+                # new val for update may or may not be wrpaped in quotes
+                p_val = info[2][1:-1] if info[2][0] == "\"" else info[2]
+                # re-concat into a string to pass into above methods
                 self.do_update(cls + " " + p_id + " " + p_attr + " " + p_val)
             elif action == "count":
+                # for each key that exists in __objects, iterate
                 print(len(list(filter(
                  lambda key: key.split(".")[0] == cls, models.storage.all()))))
             else:
